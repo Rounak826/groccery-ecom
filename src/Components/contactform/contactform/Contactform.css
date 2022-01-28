@@ -1,0 +1,92 @@
+.contanctform{
+    background-color: #82B2BD;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin: 4rem;
+    height: 10rem;
+    border-radius: 0.5rem;
+    width:initial;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    direction: ltr;
+    color:white;
+    
+}
+.contanctform .info {
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+}
+.contanctform .info h1{
+    margin: 0rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 2.8rem;
+}
+.contanctform .info p{
+    margin: 0rem;
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+}
+.contanctform .control{
+    align-items: center;
+    padding: 0.1rem 1rem;
+    display: flex;
+    flex-direction: row;
+    
+}
+.contanctform .control input{
+    height: 2.5rem;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding-left: 0.8rem;
+}
+.contanctform .controlbutton button{
+    background-color: #2e2e2e;
+    color: rgb(255, 254, 254);
+    padding: 1.35rem 2rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    border: none;
+    height: 1.5rem;
+    margin-left: 1rem;
+    font-size: 1rem;
+}
+.contanctform .controlbutton button:hover{
+    background-color: #4e4e4e;
+}
+@media only screen and (max-width: 1024px) {
+    .contanctform{
+        height: max-content;
+    }
+    .contanctform .info h1{
+        font-size: 2rem;
+    }
+    .contanctform .control input{
+        height: 2rem;
+        font-size: 1rem;
+    }
+    .contanctform .controlbutton button{
+        padding: 1rem 1rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .contanctform{
+        height: max-content;
+    }
+    .contanctform .info h1{
+        font-size: 1.8rem;
+    }
+    .contanctform .control input{
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+    .contanctform .controlbutton button{
+        padding: 0.9rem 0.9rem;
+    }
+}

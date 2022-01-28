@@ -1,0 +1,56 @@
+.orderTabel{
+    padding: 0 4.6rem;
+    display: flex;
+    flex-direction:column;
+    text-align: center;
+}
+.orderTabel table{
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 1rem;
+}
+th{
+    background-color: #1e90ff;
+    color: white;
+    margin: 10px;
+    padding: 10px 0;
+}
+td{
+    background-color: #fff;
+    padding:0.5rem 0rem;
+}
+td p{
+    margin: 0;
+}
+.orderTabel .Process{
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgba(255, 166, 0, 0.753);
+    color: white;   
+    width: fit-content;
+    padding: 0.2rem 1rem;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 10px;
+}
+.orderTabel .Success{
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgba(94, 255, 0, 0.822);
+    color: white;
+    width: fit-content;
+    padding: 0.2rem 1rem;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 10px;
+}
+.orderTabel .Canceled{
+    border: 1px solid rgb(255, 255, 255);
+    background-color: red;
+    color: white;
+    width: fit-content;
+    padding: 0.2rem 1rem;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 10px;
+}

@@ -1,0 +1,42 @@
+.productPage{
+    margin-top: 5rem;
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.productPage .productImage{
+    width: 40%;
+}
+.productPage .productImage img{
+    width: 100%;
+}
+.productPage .productDesc .info{
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+
+}
+.productPage .productDesc .info b{
+    margin-bottom: 0.4rem;
+}
+.productPage .productDesc .btn{
+    border-radius: 10px;
+    margin-right: 1rem;
+}
+.productPage ol{
+    width: 60%;
+}
+.productPage ol li{
+    margin-bottom: 1rem;
+}
+.featured{
+    padding: 0 4rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.featuredProduct h3{
+    margin: 2rem 4rem;
+}

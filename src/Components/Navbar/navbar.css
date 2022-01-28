@@ -1,0 +1,133 @@
+nav{
+    position: fixed;
+  top: 0;
+    width: 100%;
+    height: 70px;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 20;
+
+}
+
+nav .brand{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width:10%;
+    margin-left: 4rem;
+    
+}
+nav .brand img{
+    width: 100%;
+    height: 45px;
+}
+nav .brand h1{
+    margin-left: 1rem;
+    font-weight: 500;
+}
+nav .searchBar{
+    height: 2rem;
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+nav .searchBar input{
+    height: 100%;
+    width: 95%;
+    border-radius: 5px 0 0 5px;
+    border:none;
+    padding-left: 2rem;
+    font-size: 1rem;
+}
+nav .searchBar input:focus{
+    outline:solid 1px rgb(192, 192, 192)
+}
+nav .searchBar button{
+    height: 100%;
+    width: 2rem;
+    margin: 0;
+    border-radius:0 5px 5px 0;
+    border:none;
+    background-color: dodgerblue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+nav .controls{
+    margin-right: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+nav .controls button{
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    transition: all 0.4s ease;
+
+}
+nav .controls button:hover{
+    color: gray;
+}
+nav .controls button :active{
+    color: gray;
+    height: 1.2rem;
+}
+nav .dropDown{
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+nav .dropDown .options{
+    background-color: #fff;
+    padding: 0.2rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: absolute;
+    top: 35px;
+    right: 0;
+}
+
+nav .dropDown .options a{
+    text-decoration: none;
+    color: #1e1e1e;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0.5rem;
+    padding-right: 2rem;
+    border-bottom:solid 1px rgb(214, 214, 214);
+}
+nav .dropDown .options a:hover{
+    background-color:solid 1px rgb(146, 146, 146);
+}
+nav .dropDown .options a:last-child{
+    border-bottom: none;
+}
+nav .dropDown .options a svg{
+    margin-right: 0.5rem;
+}
+
+@media only screen and (max-width: 1024px) {
+    nav .brand h1{
+        margin: 0 1rem;
+        font-size: 1.8rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    nav .brand h1{
+        display: none;
+    }
+}

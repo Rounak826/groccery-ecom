@@ -1,0 +1,137 @@
+.addNew .pCard{
+    width: 100%;
+}
+.pCard{
+    position: relative;
+    background-color: #fff;
+    padding: 1.3rem;
+    border-radius: 1rem;
+    width:20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    max-width: 200px;
+    min-width: 190px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    border:solid 2px aliceblue;
+    transition: all 0.4s ease;
+}
+.pCard:hover{
+    border:solid 2px #c5c5c5
+}
+.pCard .pImage{
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+.pCard .pImage img{
+    display: flex;
+    justify-content: center;
+    height: 100px;
+}
+.pCard .top{
+    height: 1.5rem;
+    width: 90%;
+    position: absolute;
+    top: 0.6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.pCard .top .label{
+    background-color: #CBE193;
+    border-radius: 2rem;
+    padding: 0.2rem 1rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fafafa;
+}
+.pCard .top button{
+    margin-right: 0.5rem;
+    background-color: #fff;
+    border:none;
+    transition: all 0.4s ease;
+}
+.pCard .top button:hover{  
+    color: red;
+}
+.pCard .top button :active{  
+    fill:red;
+    color: red;
+    height: 1.3rem;
+}
+.pCard .top button:active{
+    fill: red;
+    color: red;
+}
+.pCard .pInfo{
+    margin-bottom: 0.5rem;
+}
+.pCard .pInfo .rating{
+    fill: yellow;
+    color: yellow;
+    display: flex;
+    align-items: center;
+}
+.pCard .pInfo .rating span{
+    color: black;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-left: 0.4rem;
+}
+.pCard .pInfo .rating .disabledText{
+    font-weight: normal;
+    color: rgb(143, 143, 143);
+}
+
+.pCard .pInfo h4{
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+.pCard .pInfo p{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin: 0.2rem 0;
+    color: gray;
+}
+.pCard .pInfo p span{
+    color: #ff9c9a;
+    font-weight: 700;
+}
+.pCard .pControl{
+    height: 1.6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.pCard .pControl select{
+    padding: 0 0.2rem;
+    height: 1.6rem;
+    border-radius: 5px;
+    outline:solid rgb(226, 226, 226) 1px;
+}
+.pCard .pControl select option{
+    border-radius: 2px;
+}
+.pCard .pControl button{
+    background-color: #fff;
+    border:none;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+
+}
+.pCard .pControl button:hover{
+    color: salmon;
+}
+.pCard .pControl button :active{
+    color: salmon;
+    height: 1.3rem;
+}

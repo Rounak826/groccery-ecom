@@ -1,0 +1,9 @@
+.payment{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+.payment img{
+    height: 100%;
+}
