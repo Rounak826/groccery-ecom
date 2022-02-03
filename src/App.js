@@ -7,20 +7,25 @@ import CarouselComp from './Components/Carousel/carousel';
 import CategoryContainer from './Components/Category_container/Category_container';
 import Setup from './Components/Setup/Setup';
 import Footer from './Components/Footer/Footer'
-import { useState } from 'react';
+import {useState } from 'react';
 import Admin from './Components/Admin/Admin';
 import Signup from './Components/Signup/Signup';
 import OfferCard from './Components/OfferCard/OfferCard';
 import Contactform from './Components/contactform/contactform/Contactform'
+import PrivateRoute from './PrivateRoute';
 import {
   BrowserRouter as Router,
   Route,
   Routes,
 } from "react-router-dom";
-import CheckOut from './Components/Checkout/CheckOut';
 import Login from './Components/Login/Login';
-import ProductPage from './Components/Product/Product_page';
 import Payment from './Components/Payment/Payment'
+import CheckoutPage from './Components/CheckoutPage/CheckoutPage';
+import Test from './Components/Test/Test';
+import ProductPage from './Components/ProductPage/ProductPage';
+import AuthProvider from './Context/AuthContext'
+import PreventedRoute from './PreventedRoute';
+import OrderTracking from './Components/OrderTracking/OrderTracking';
 let data = [
   {
     name: 'detergent',
@@ -202,6 +207,7 @@ function App() {
   }
   return (
     <div className="App">
+    <AuthProvider>
       <Router>
         <NavBar admin={changeAdmin} list={itemList} />
         
@@ -215,18 +221,19 @@ function App() {
         </CategoryContainer>
         <Contactform />
         </>} />
-        <Route path = '/login' element={<Login />} />
-        <Route path = '/signup' element={<Signup />} />
-        <Route path = '/admin' element={ <Admin />} />
+        <Route path = '/login' element={<PreventedRoute><Login /></PreventedRoute>} />
+        <Route path = '/signup' element={<PreventedRoute><Signup /></PreventedRoute>} />
+        <Route path = '/admin' element={ <PrivateRoute><Admin /></PrivateRoute>} />
         <Route path = '/product' element={<ProductPage />} />
-        <Route path = '/checkout' element={<CheckOut list={itemList} />} />
-        <Route path = '/setup' element={<Setup />} />
-        <Route path = '/pay' element={<Payment />} />
-  
+        <Route path = '/checkout' element={<PrivateRoute><CheckoutPage /></PrivateRoute>} />
+        <Route path = '/setup' element={<PrivateRoute><Setup /></PrivateRoute>} />
+        <Route path = '/pay' element={<PrivateRoute><Payment /></PrivateRoute>} />
+        <Route path ='/test' element={<Test/>} />
+        <Route path ='/trackOrder' element={<PrivateRoute><OrderTracking/></PrivateRoute>} />
       </Routes>
       <Footer></Footer>
       </Router>
-
+      </AuthProvider>
 
     </div>
   );

@@ -1,6 +1,6 @@
 nav{
     position: fixed;
-  top: 0;
+    top: 0;
     width: 100%;
     height: 70px;
     background-color: aliceblue;
@@ -58,6 +58,24 @@ nav .searchBar button{
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s;
+}
+nav .searchBar button:hover{
+    background-color: rgb(29, 127, 226);
+}
+nav .controls .Login{
+    background-color: dodgerblue;
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+nav .controls .Login:hover{
+    background-color: rgb(29, 127, 226);
+}
+nav .controls .Login:active{
+    padding: 0.3rem 0.95rem;    
 }
 nav .controls{
     margin-right: 4rem;
@@ -78,6 +96,11 @@ nav .controls button :active{
     color: gray;
     height: 1.2rem;
 }
+nav button{
+    display: flex;
+    flex-direction: row;
+}
+
 nav .dropDown{
     margin-right: 2rem;
     display: flex;
@@ -86,7 +109,17 @@ nav .dropDown{
     align-items: center;
     position: relative;
 }
+nav button p{
+    margin: 0;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.3rem;
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 5rem;
+}
+
 nav .dropDown .options{
+    width: max-content;
     background-color: #fff;
     padding: 0.2rem;
     border-radius: 5px;
@@ -99,7 +132,7 @@ nav .dropDown .options{
     right: 0;
 }
 
-nav .dropDown .options a{
+nav .dropDown .options>*{
     text-decoration: none;
     color: #1e1e1e;
     display: flex;
@@ -110,13 +143,13 @@ nav .dropDown .options a{
     padding-right: 2rem;
     border-bottom:solid 1px rgb(214, 214, 214);
 }
-nav .dropDown .options a:hover{
-    background-color:solid 1px rgb(146, 146, 146);
+nav .dropDown .options>*:hover{
+    color:#7e7e7e;
 }
-nav .dropDown .options a:last-child{
+nav .dropDown .options>*:last-child{
     border-bottom: none;
 }
-nav .dropDown .options a svg{
+nav .dropDown .options>* svg{
     margin-right: 0.5rem;
 }
 

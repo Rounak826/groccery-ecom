@@ -1,0 +1,10 @@
+.test{
+    margin: 5rem;
+}
+.test .formGroup1{
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+

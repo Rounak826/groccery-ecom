@@ -1,0 +1,176 @@
+.CheckoutPage{
+    padding: 0 5rem;
+    width: 100%;
+    margin-top: 6rem;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:flex-start;
+
+}
+.w-100{
+    width: 100%;
+}
+.w-50{
+    width: 45%;
+}
+.w-25{
+    width: 25%;
+}
+.w-20{
+    width: 20%;
+}
+.ML-1r{
+    margin-left: 1rem;
+}
+.CheckoutPage .checkOutform{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.CheckoutPage .summaryDiv{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: flex-start;
+}
+.CheckoutPage .checkOutform h3{
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.CheckoutPage .checkOutform .New{
+    color: rgb(153, 153, 153);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 2rem 0;
+    transition: all 0.5s;
+ }
+ .CheckoutPage .checkOutform .New>*{
+     margin-right: 0.5rem;
+ }
+ .CheckoutPage .checkOutform .New:hover{
+     color: rgb(59, 59, 59);
+     cursor: pointer;
+ }
+.CheckoutPage .checkOutform .address{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+.CheckoutPage .checkOutform .address .card{
+    padding: 1rem;
+    width: 25%;
+    border-radius: 1rem;
+    border: none;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.CheckoutPage .checkOutform .address .card .head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+.CheckoutPage .checkOutform .address .card .body{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+}
+.CheckoutPage .checkOutform .address .card h3{
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+.CheckoutPage .checkOutform .address .card p{
+    font-size: 0.9rem;
+    color: #818181;
+    margin: 0;
+}
+.CheckoutPage .checkOutform .address .card .body button{
+    color: #a7a7a7;
+    border: none;
+    background-color: inherit;
+    margin: 0;
+    padding: 0;
+    font-size: 0.8rem;
+}
+.CheckoutPage .checkOutform form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.CheckoutPage .checkOutform form .formItem{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+} 
+.CheckoutPage .checkOutform form .formItem input{
+    padding-left: 1rem;
+    height: 2.5rem;
+    width: 100%;
+    border: solid 2px rgb(196, 196, 196);
+    border-radius: 0.5rem;
+}
+.CheckoutPage .checkOutform form .formItem select{
+    height: 2.5rem;
+    border: solid 2px rgb(196, 196, 196);
+    border-radius: 0.5rem;
+}
+.CheckoutPage .checkOutform form .formItem label{
+    font-size: 0.8rem;
+    color:gray;
+    margin-bottom: 0.3rem;
+
+}
+.formGroup{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 1rem;
+}
+.iconInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding:0 0.5rem;
+    border-radius: 0.5rem;
+    border: solid 2px rgb(196, 196, 196);
+}
+.iconInput input{
+    padding-left: 1rem;
+    height: 2.5rem;
+    width: 100%;
+    border: none !important;
+}
+.iconInput input:focus{
+    outline: none;
+}
+.iconInput:focus-within{
+    border: solid 2px black;
+}
+.iconInput svg{
+    height: 1.2rem;
+    color: rgb(126, 125, 125);;
+}

@@ -1,0 +1,176 @@
+.ProductPage{
+    width: 100%;
+    margin: 5rem 0;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+}
+.ProductPage .firstHalf{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+justify-content: flex-start;
+margin-bottom: 10px;
+}
+.ProductPage .secondHalf{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+justify-content: flex-start;
+}
+.firstHalf .mainImg{
+    width: 50%;
+    background-color: #f1f1f1;
+}
+.firstHalf .mainImg img{
+    width: 100%;
+}
+.ProductPage .firstHalf .smallImg {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.ProductPage .firstHalf .smallImg .Img{
+    width: 15%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 10px;
+    margin-right: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+    border-radius: 1rem;
+
+}
+.ProductPage .firstHalf .smallImg .Img img{
+    width: 100%;
+}
+.ProductPage .firstHalf .Heading{
+    font-family :sans-serif;
+    color: rgb(56, 56, 56);
+    margin: 8px;
+    padding: 6px;
+    margin-left: 8px;
+}
+.ProductPage .secondHalf .price{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+    color: rgb(73, 72, 72);
+    font-family: 'Times New Roman', Times, serif;
+}
+.ProductPage .secondHalf .price h2{
+    font-weight: 600;
+}
+.ProductPage .secondHalf .price span{
+    font-size: 1.2rem;
+    color: gray ;
+}
+.ProductPage .secondHalf .Description{
+    margin: 8px;
+    padding: 8px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.ProductPage .secondHalf .Highlights{
+    margin: 8px;
+    font-family: 'Times New Roman', Times, serif;
+}
+    
+.ProductPage .firstHalf .ButtonContainer .btn .button{
+background-color: #ecd609;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+   
+  }
+  .ProductPage .firstHalf .ButtonContainer .Bag{
+      width: 17px;
+      height: 17px;
+      margin-right: 7px;
+  }
+  .ProductPage .firstHalf .ButtonContainer .DownIcon{
+      width: 10px;
+      height: 10px;
+  }
+  .button2{
+    background-color: white;
+    color: black;
+    border: 2px solid #e1fa00;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px;
+    float: right;
+  }
+  .HeartIcon{
+      color: gray;
+  }
+.button3{
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+.button4{
+   
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+.BagIcon{
+    color: gray ;
+}
+.ButtonContainer{
+    margin-right: 2rem;
+    padding-right: 4rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.Ratings{
+    border: none;
+    border-radius: 8px;
+    background-color: #ecd609;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.5rem;
+    margin: 2px;
+   
+}
+.Star{
+    width: 15px;
+    height: 15px;
+    margin-right: 4px;
+    margin-top: 4px;
+}
+.secondHalf{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.ButtonContainer .buyNowC {
+    display: flex;
+    justify-content: space-between;
+}

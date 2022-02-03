@@ -1,0 +1,155 @@
+.track{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 0 4rem;
+    margin: 6rem 0;
+}
+.track .Row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.OrderPage{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 8px;
+    padding: 8px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+.OrderPage .Card p{
+    margin: 0;
+}
+.OrderPage .Card h2{
+    margin: 0;
+}
+.OrderPage .Card{
+    background-color: #fff;
+    color: #3e3e3e;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid rgb(189, 186, 186);
+    font-family: sans-serif;
+    border: none;
+}
+.OrderPage hr{
+    width: 95%;
+    height: 1px;
+    color: rgb(129, 129, 129);  
+}
+.OrderPage .Image img{
+    width: 100%;
+}
+.OrderPage .Image{
+    width: 10%;
+    height: 6rem;
+    background-color: #f3f3f3;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.OrderPage .Card .price{
+    width: 80%;
+    padding-left: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.OrderPage .SubCat{
+    font-size: small;
+    color: rgb(143, 140, 140);
+}
+.OrderPage .OrderPage .PriceCol{
+    color: rgb(83, 80, 80);
+} 
+.OrderPage .Qty{
+    width: 10%;
+    font-size: small;
+    color: rgb(102, 101, 101);
+}
+.OrderPage .SubQty{
+    padding-top: 20px;
+    width: 100%;
+    font-size: medium;
+}
+.OrderPage .Row{
+    width: 100%;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    padding: 0 5rem;
+}
+.Discount{
+    color: coral;
+}
+.Row{
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #949393;
+}
+.orderstatus{
+    padding: 1rem;
+    width: 30%;
+    font-size: 2rem;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(232,223,232,1);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(232,223,232,1);
+    box-shadow: 10px 10px 5px 0px rgba(232,223,232,1);
+    border-radius: 0.8rem;
+
+}
+.orderstatus .statusCard .image img{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgb(200, 197, 197);
+    border-radius: 0.8rem;
+    padding: 5px;
+}
+.orderstatus .statusCard .text{
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.orderstatus .statusCard .text h3{
+    font-size: 0.8rem;
+    color: black;
+    display: flex;
+    margin: 0rem;
+}
+.orderstatus .statusCard .text p{
+    font-size: 0.6rem;
+    color: rgb(168, 155, 155);
+    margin: 0rem;
+    }
+.orderstatus .statusCard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.orderstatus .group{
+    width:100%;
+    margin-bottom: 1rem;
+}
+
+
