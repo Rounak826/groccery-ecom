@@ -10,7 +10,7 @@ export default function ProductCard(props) {
       <div className="pCard">
          <div className="top">
            <div className="label">
-              {props.productInfo.discount}
+              {props.productInfo.discount}% off
            </div>
            <button><Heart/></button>
          </div>
