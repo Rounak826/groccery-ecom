@@ -1,0 +1,95 @@
+import { collection, addDoc, doc, setDoc, deleteDoc, getDoc, getDocs, query, where ,orderBy} from "firebase/firestore";
+import { getFirestore } from "firebase/firestore"
+import React, {useContext } from 'react';
+const DatabaseContext = React.createContext();
+export function useDatabase(){
+    return useContext(DatabaseContext);
+}
+
+export default function DataProvider({children}) {
+    const db = getFirestore();
+
+    //creates/updates a document in specified collection with specified doc ID
+    function createDocWithId(collection, docID, data) {
+        return setDoc(doc(db, collection, docID), data);
+    }
+    //creates a document in specified collection with auto Generated doc Id
+    function createDocWithoutId(collection, data) {
+        return addDoc(collection(db, collection), data);
+    }
+    //delete a document in specified collection and docId
+    function deleteDocWithID(collection, docID) {
+        return deleteDoc(doc(db, collection, docID));
+    }
+    //get document with docID from specified collection
+    function getDocWithID(collection, docID) {
+        let docRef = doc(db, collection, docID);
+        return getDoc(docRef);
+
+        /*if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+        }*/
+
+    }
+    //Gets All the documents of specified field
+    function getAllDocs(collection) {
+       // returns Array of documents from collection
+        return getDocs(collection(db, "cities"));
+        
+    }
+    function queryCollection(collectionName,field1,operator, feild2) {
+        //operators available
+        /* 
+        < less than
+        <= less than or equal to
+        == equal to
+        > greater than
+        >= greater than or equal to
+        != not equal to
+        array-contains
+        array-contains-any
+        in
+        not-in
+        */
+        //for more info refer https://firebase.google.com/docs/firestore/query-data/queries?authuser=0#query_operators
+        const collectionRef = collection(db, collectionName);
+        // create query
+        const q = query(collectionRef, where(field1, operator, feild2));
+        // returns Array of documents from collection which satisfies specified query
+        return getDocs(q)
+         
+     }
+     function getDocInOrder(collectionName,fieldName,order){
+        const collectionRef = collection(db, collectionName);
+
+        if(order==='desc'){
+            const q = query(collectionRef, orderBy(fieldName,order ));
+            return getDocs(q)
+        }else{
+            const q = query(collectionRef, orderBy(fieldName));
+            return getDocs(q)
+        }
+        
+
+     }
+    
+    const value = {
+        createDocWithId,
+        createDocWithoutId,
+        deleteDoc,
+        deleteDocWithID,
+        getAllDocs,
+        getDocWithID,
+        queryCollection,
+        getDocInOrder
+    }
+    return (
+        <DatabaseContext.Provider value={value}>
+            {children}
+        </DatabaseContext.Provider>
+    )
+
+}

@@ -3,7 +3,7 @@ import './test.css'
 export default function Test() {
   let nameRef = useRef();
   let emailRef = useRef();
-  function setup(email, password,){
+  function handelSubmit(e,email, password,){
     e.preventDefault();
     console.log(nameRef.current.value);
     console.log(emailRef.current.value);

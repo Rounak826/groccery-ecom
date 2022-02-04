@@ -7,7 +7,7 @@ import CarouselComp from './Components/Carousel/carousel';
 import CategoryContainer from './Components/Category_container/Category_container';
 import Setup from './Components/Setup/Setup';
 import Footer from './Components/Footer/Footer'
-import {useState } from 'react';
+import { useState } from 'react';
 import Admin from './Components/Admin/Admin';
 import Signup from './Components/Signup/Signup';
 import OfferCard from './Components/OfferCard/OfferCard';
@@ -26,6 +26,7 @@ import ProductPage from './Components/ProductPage/ProductPage';
 import AuthProvider from './Context/AuthContext'
 import PreventedRoute from './PreventedRoute';
 import OrderTracking from './Components/OrderTracking/OrderTracking';
+import DataProvider from './Context/DatabaseContext';
 let data = [
   {
     name: 'detergent',
@@ -207,32 +208,34 @@ function App() {
   }
   return (
     <div className="App">
-    <AuthProvider>
-      <Router>
-        <NavBar admin={changeAdmin} list={itemList} />
-        
-      <Routes>
-        <Route path = '/' element={<>
-        
-        <CarouselComp />
-        <div className='offerRow'>{offerList.map(offer => <OfferCard key={"offer" + offer.offer} data={offer} />)}</div>
-        <CategoryContainer>
-          {data.map(product => <ProductCard key={Math.random()} productInfo={product}></ProductCard>)}
-        </CategoryContainer>
-        <Contactform />
-        </>} />
-        <Route path = '/login' element={<PreventedRoute><Login /></PreventedRoute>} />
-        <Route path = '/signup' element={<PreventedRoute><Signup /></PreventedRoute>} />
-        <Route path = '/admin' element={ <PrivateRoute><Admin /></PrivateRoute>} />
-        <Route path = '/product' element={<ProductPage />} />
-        <Route path = '/checkout' element={<PrivateRoute><CheckoutPage /></PrivateRoute>} />
-        <Route path = '/setup' element={<PrivateRoute><Setup /></PrivateRoute>} />
-        <Route path = '/pay' element={<PrivateRoute><Payment /></PrivateRoute>} />
-        <Route path ='/test' element={<Test/>} />
-        <Route path ='/trackOrder' element={<PrivateRoute><OrderTracking/></PrivateRoute>} />
-      </Routes>
-      <Footer></Footer>
-      </Router>
+      <AuthProvider>
+        <DataProvider>
+          <Router>
+            <NavBar admin={changeAdmin} list={itemList} />
+
+            <Routes>
+              <Route path='/' element={<>
+
+                <CarouselComp />
+                <div className='offerRow'>{offerList.map(offer => <OfferCard key={"offer" + offer.offer} data={offer} />)}</div>
+                <CategoryContainer>
+                  {data.map(product => <ProductCard key={Math.random()} productInfo={product}></ProductCard>)}
+                </CategoryContainer>
+                <Contactform />
+              </>} />
+              <Route path='/login' element={<PreventedRoute><Login /></PreventedRoute>} />
+              <Route path='/signup' element={<PreventedRoute><Signup /></PreventedRoute>} />
+              <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>} />
+              <Route path='/product' element={<ProductPage />} />
+              <Route path='/checkout' element={<PrivateRoute><CheckoutPage /></PrivateRoute>} />
+              <Route path='/setup' element={<PrivateRoute><Setup /></PrivateRoute>} />
+              <Route path='/pay' element={<PrivateRoute><Payment /></PrivateRoute>} />
+              <Route path='/test' element={<Test />} />
+              <Route path='/trackOrder' element={<PrivateRoute><OrderTracking /></PrivateRoute>} />
+            </Routes>
+            <Footer></Footer>
+          </Router>
+        </DataProvider>
       </AuthProvider>
 
     </div>
