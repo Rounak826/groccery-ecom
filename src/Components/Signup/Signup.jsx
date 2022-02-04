@@ -42,8 +42,13 @@ export default function Signup() {
         setLoading(true);
         createUser(emailRef.current.value, passwordRef.current.value).then(
           (e) => {
-            setLoading(false);
-            navigate("/setup");
+            e.user.sendEmailVerification().then(e=>{
+              setLoading(false);
+              navigate("/verify");
+            }).catch(e=>{
+              setError({status:true, message:'Verification could not be sent!'})
+            });
+            
             
           }
         ).catch(e=>{

@@ -27,6 +27,8 @@ import AuthProvider from './Context/AuthContext'
 import PreventedRoute from './PreventedRoute';
 import OrderTracking from './Components/OrderTracking/OrderTracking';
 import DataProvider from './Context/DatabaseContext';
+import Verify from './Components/Verify/Verify';
+import UnVerifiedRoute from './unverifiedRoute';
 let data = [
   {
     name: 'detergent',
@@ -232,6 +234,7 @@ function App() {
               <Route path='/pay' element={<PrivateRoute><Payment /></PrivateRoute>} />
               <Route path='/test' element={<Test />} />
               <Route path='/trackOrder' element={<PrivateRoute><OrderTracking /></PrivateRoute>} />
+              <Route path='/verify' element={<UnVerifiedRoute><Verify /></UnVerifiedRoute>} />
             </Routes>
             <Footer></Footer>
           </Router>

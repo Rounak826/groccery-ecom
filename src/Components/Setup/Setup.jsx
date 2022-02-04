@@ -22,7 +22,7 @@ export default function Setup() {
       MobNo: mobRef.current.value
 
     }).then(e=>{
-      alert('Information Saved')
+      alert('Information Saved');
     }).catch(e=>{
       console.log(e);
     })
@@ -91,7 +91,7 @@ export default function Setup() {
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
 
-            <button onClick={handleSUbmit}>Submit</button>
+            <button className="submit" onClick={handleSUbmit}>Submit</button>
           </Form>
 
         </div>

@@ -1,0 +1,41 @@
+.verify{
+    margin: 5rem 0;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.verify .row{
+    text-align: center;
+    width: 50%;
+}
+.verify .Row{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+.verify .Row>*:first-child{
+    background-color: coral;
+}
+.verify .image{
+    width: 30%;
+}
+.verify .image img{
+    width: 100%;
+}
+.verify h3{
+    color: #5e5e5e
+}
+.verify p{
+    color: #979797
+}
+.verify button{
+    background-color: dodgerblue;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border:none;
+}
