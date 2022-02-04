@@ -7,11 +7,14 @@
     padding: 0 4rem;
     margin: 6rem 0;
 }
-.track .Row{
+.track .Row2{
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-radius: 1rem;
 }
 .OrderPage{
     width: 70%;
@@ -20,7 +23,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 0 8px;
-    padding: 8px;
+    padding: 1rem 4rem;
     border: 1px solid rgb(255, 255, 255);
     border-radius: 10px;
 }
@@ -45,7 +48,7 @@
     border: none;
 }
 .OrderPage hr{
-    width: 95%;
+    width: 98%;
     height: 1px;
     color: rgb(129, 129, 129);  
 }
@@ -53,7 +56,7 @@
     width: 100%;
 }
 .OrderPage .Image{
-    width: 10%;
+    width: 6rem;
     height: 6rem;
     background-color: #f3f3f3;
     border-radius: 1rem;
@@ -63,7 +66,7 @@
     justify-content: center;
 }
 .OrderPage .Card .price{
-    width: 80%;
+    width: 75%;
     padding-left: 2rem;
     height: 100%;
     display: flex;
@@ -92,51 +95,50 @@
     display: flex;
     flex-direction:row;
     justify-content: space-between;
-    padding: 0 5rem;
-}
-.Discount{
-    color: coral;
-}
-.Row{
     font-size: 0.9rem;
     font-weight: 600;
     color: #949393;
 }
+.Discount{
+    color: coral;
+}
 .orderstatus{
-    padding: 1rem;
+    padding: 1rem 2rem;
     width: 30%;
     font-size: 2rem;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(232,223,232,1);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(232,223,232,1);
-    box-shadow: 10px 10px 5px 0px rgba(232,223,232,1);
-    border-radius: 0.8rem;
 
 }
-.orderstatus .statusCard .image img{
-    width: 100%;
+.orderstatus .statusCard .image{
+    width: 3rem;
+    height: 3rem;
     display: flex;
-    flex-direction: row;
-    height: 2rem;
-    width: 2rem;
-    background-color: rgb(200, 197, 197);
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(151, 199, 243);
     border-radius: 0.8rem;
     padding: 5px;
 }
+.orderstatus .statusCard .image img{
+    width: 100%;
+    
+}
 .orderstatus .statusCard .text{
+    padding-left: 2rem;
+    width: 80%;
     display: flex;
     flex-direction: column;
     font-size: 1rem;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 .orderstatus .statusCard .text h3{
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: black;
     display: flex;
     margin: 0rem;
 }
 .orderstatus .statusCard .text p{
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color: rgb(168, 155, 155);
     margin: 0rem;
     }
@@ -146,10 +148,14 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    padding: 0.8rem;
+    border-radius: 1rem;
 }
 .orderstatus .group{
     width:100%;
     margin-bottom: 1rem;
 }
-
+.orderstatus .statusCard:hover{
+    background-color: #f1f1f1;
+}
 

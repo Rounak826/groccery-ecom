@@ -4,12 +4,14 @@ import CartItem from '../CartItem/CartItem';
 import './cart.css'
 export default function Cart(props) {
   let [cartTotal, setCartTotal] =   useState(0);
+  
   const total = useCallback(
     ()=>{
         let total = 0;
         props.list.map(item => total = total + item.price*item.qty)
         setCartTotal(total);
-    },[props.list])   
+    },[props.list])
+
   useEffect(() => {
     total();
   }, [total]);

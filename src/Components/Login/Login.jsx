@@ -8,7 +8,7 @@ import { useAuth } from "../../Context/AuthContext";
 
 export default function Login() {
   let navigate = useNavigate();
-    const {authenticateUser}= useAuth()
+    const {authenticateUser, forgetPassword}= useAuth();
     const [show, setShow] = useState(true);
     const [otpSent, setOtpSent] = useState(false);
     const mobilenoRef = useRef();
@@ -143,6 +143,14 @@ export default function Login() {
   
       return re.test(str)
     }
+    function handelForget(e){
+      e.preventDefault();
+      forgetPassword(emailRef.current.value).then(e=>{
+        alert("Please check your email to reset password")
+      }).catch(e=>{
+        setError({status:true,message:"Failed to send Password Reset Email"})
+      })
+    }
 
     
     return (
@@ -155,7 +163,7 @@ export default function Login() {
        {error.status&&<div className="alert alert-danger" role="alert">
        {error.message}
        </div>}
-       {show?emailloginForm(setShow, show,emailRef,passwordRef,handleSubmit,loading,mailValidation,passValidation): otpSent
+       {show?emailloginForm(setShow, show,emailRef,passwordRef,handleSubmit,loading,mailValidation,passValidation,handelForget): otpSent
             ? otpForm(setShow, show, OtpRef, handleSubmitOTP,loading)
             : mobilelogin(setShow, show, mobilenoRef, handleSendOTP,loading)}
     </div>
@@ -195,7 +203,7 @@ function mobilelogin(setShow, show, mobilenoRef, handleSendOTP,loading) {
     </form>
   );
 }
-  function emailloginForm(setShow,show,emailRef,passwordRef,handleSubmit,loading,mailValidation,passValidation){
+  function emailloginForm(setShow,show,emailRef,passwordRef,handleSubmit,loading,mailValidation,passValidation,handelForget){
     return(
       <form action="">
             <div className="formInput">
@@ -207,8 +215,11 @@ function mobilelogin(setShow, show, mobilenoRef, handleSendOTP,loading) {
               <label htmlFor="password">Password</label>
               <input type="Password" name="email" ref={passwordRef} style={passValidation} />
             </div>
-  
+            
             <button onClick={e=>setShow(!show)} className="link">Use Mobile Instead</button>
+            <button onClick={handelForget} className="link">Forget Password</button>
+       
+            
             <div className="formRow">
               <Link to='/signup' className="secondary">Signup</Link>
               <Link to='/' className="primary" onClick={handleSubmit}>{loading ? "logging in..." : "Login"}</Link>

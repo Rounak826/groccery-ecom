@@ -3,12 +3,11 @@ import './productCard.css';
 
 import { Heart, Star } from 'react-feather';
 import { ShoppingCart } from 'react-feather';
-import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom'
 export default function ProductCard(props) {
-  const navigate = useNavigate();
   return (
 
-      <div className="pCard" onClick={e=>navigate('/product')}>
+      <div className="pCard">
          <div className="top">
            <div className="label">
               {props.productInfo.discount}
@@ -16,7 +15,7 @@ export default function ProductCard(props) {
            <button><Heart/></button>
          </div>
           <div className="pImage">
-            <img src={props.productInfo.img} alt="" />
+           <Link to={"/product"}><img src={props.productInfo.img} alt=""/></Link>
           </div>
 
           <div className="pInfo">
