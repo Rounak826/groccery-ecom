@@ -1,5 +1,5 @@
 import { collection, addDoc, doc, setDoc, deleteDoc, getDoc, getDocs, query, where ,orderBy } from "firebase/firestore";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes,getDownloadURL } from "firebase/storage";
 import { getFirestore } from "firebase/firestore"
 import React, {useContext } from 'react';
 const DatabaseContext = React.createContext();
@@ -84,6 +84,12 @@ export default function DataProvider({children}) {
         return uploadBytes(imageRef, image);
 
      }
+     //get image url
+     function getImageURL(path){
+        const imageRef = ref(storage, path);
+        return getDownloadURL(imageRef)
+
+     }
     
     const value = {
         createDocWithId,
@@ -94,7 +100,8 @@ export default function DataProvider({children}) {
         getDocWithID,
         queryCollection,
         getDocInOrder,
-        uploadImage
+        uploadImage,
+        getImageURL
     }
     return (
         <DatabaseContext.Provider value={value}>

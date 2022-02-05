@@ -17,6 +17,7 @@ export default function Setup() {
   let emailRef = useRef();
   const {currentUser} = useAuth();
   const { createDocWithId } = useDatabase();
+
   function handleSUbmit(e) {
     setloading(true);
     console.log('clicked', mobRef.current.value);

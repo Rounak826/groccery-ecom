@@ -16,12 +16,25 @@
 }
 .addNew .preview .slides{
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
-    padding-left: 10rem;
+}
+.addNew .preview .slides .tiles{
+    min-width: 100px;
+    min-height: 100px;
+    background-color: #ececec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    border: none;
+}
+.addNew .preview p{
+    margin: 0;
 }
 .addNew .preview .slides input::file-selector-button{
-    margin-bottom: 1rem;
+    padding: 0;
+    margin: 0;
     min-width: 100px;
     min-height: 100px;
     background-color: #ececec;
@@ -31,6 +44,9 @@
     border-radius: 1rem;
     border: none;
     color: #979696;
+}
+.addNew .preview .slides label{
+    width: fit-content;
 }
 .addNew .preview .slides>div:hover{
     background-color: #fdfcfc;

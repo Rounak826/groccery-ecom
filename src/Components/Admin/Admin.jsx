@@ -6,12 +6,13 @@ import './admin.css';
 import dummy from '../../Assets/product3.png';
 import { Plus, Upload } from 'react-feather';
 import StocksTable from '../StocksTabel/StocksTable'
-import {useDatabase} from '../../Context/DatabaseContext';
+import { useDatabase } from '../../Context/DatabaseContext';
 
 export default function Admin() {
-  let {createDocWithoutId, uploadImage} = useDatabase();
-  let [loading ,setLoading] = useState(false);
-  let [error,setError] = useState({status:false, message:""});
+  let { createDocWithoutId, uploadImage } = useDatabase();
+  let [imgCount, setImgCount] = useState(0);
+  let [loading, setLoading] = useState(false);
+  let [error, setError] = useState({ status: false, message: "" });
   let productNameRef = useRef();
   let brandRef = useRef();
   let categoryRef = useRef();
@@ -24,58 +25,66 @@ export default function Admin() {
   let stockRef = useRef();
   let descRef = useRef();
   let imgRef = useRef();
-  const [selectedImage, setSelectedImage] = useState('../../Assets/product3.png');
+  const [selectedImage, setSelectedImage] = useState();
   let [data, setData] = useState({
-    name: "Product Name",
-    brand:"Brand Name",
-    category:"",
-    subCategory:"",
+    productId:"Product Name",
+    name: "Product NameBrand Name",
+    brand: "Brand Name",
+    category: "",
+    subCategory: "",
     wholePrice: 0,
     salePrice: 0,
     unit: "unit",
     discount: 0,
     exp: "",
-    stock:0,
-    desc:"",
-    img:dummy,
-    rating:0,
-    ratingCount:0
+    stock: 0,
+    desc: "",
+    img: dummy,
+    rating: 0,
+    ratingCount: 0
   })
 
-  const handelChange=()=>{
+  const handelChange = () => {
     setData({
+      productId: productNameRef.current.value+brandRef.current.value,
       name: productNameRef.current.value,
       brand: brandRef.current.value,
-      category:categoryRef.current.value,
-      subCategory:subCategoryRef.current.value,
+      category: categoryRef.current.value,
+      subCategory: subCategoryRef.current.value,
       wholePrice: wholePriceRef.current.value,
       salePrice: salesPriceRef.current.value,
       unit: unitRef.current.value,
       discount: discountRef.current.value,
       exp: expRef.current.value,
-      stock:stockRef.current.value,
-      desc:discountRef.current.value,
-      img:URL.createObjectURL(selectedImage),
-      rating:0,
-      ratingCount:0
+      stock: stockRef.current.value,
+      desc: discountRef.current.value,
+      img: selectedImage,
+      rating: 0,
+      ratingCount: 0
     })
   }
   const imageChange = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setSelectedImage(e.target.files[0]);
-      console.log(data.img);
-      handelChange()
-      console.log(data.img);
-      
+    console.log(data.name.length);
+    if (e.target.files.length !== 0 && productNameRef.current.value&&brandRef.current.value && imgCount<4) {
+      uploadImage('/products/'+data.productId+'/image'+imgCount ,e.target.files[0]).then(e=>{
+        console.log('uploaded successfully')
+        setImgCount(++imgCount);
+      }).catch(e=>{
+        console.log('failed to upload');
+      })
+
+    }else{
+      alert('Please enter Product name and product brand before uploading file');
     }
-  };
-  const handelSubmit=(e)=>{
+
+  }
+  const handelSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    createDocWithoutId('product', data).then(e=>{
+    createDocWithoutId('product', data).then(e => {
       alert('product added');
       setLoading(false);
-    }).catch(e=>{
+    }).catch(e => {
       setLoading(false);
       console.log(e);
       alert('product could not be added');
@@ -86,13 +95,15 @@ export default function Admin() {
       <div className="addNew">
         <div className="preview">
           <ProductCard productInfo={data} />
+
           <div className="slides">
-          <input className='upload'
-          accept="image/*"
-          type="file"
-          onChange={imageChange}
-        />
+            <input className='upload'
+              accept="image/*"
+              type="file"
+              onChange={imageChange}
+            />
           </div>
+
         </div>
         <div className="form">
           <h1>Add New Item</h1>
@@ -100,18 +111,18 @@ export default function Admin() {
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Product name</Form.Label>
-                <Form.Control type="Text" placeholder="Product name" ref={productNameRef}/>
+                <Form.Control type="Text" placeholder="Product name" ref={productNameRef} />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Brand name</Form.Label>
-                <Form.Control type="Text" placeholder="Brand name" ref={brandRef}/>
+                <Form.Control type="Text" placeholder="Brand name" ref={brandRef} />
               </Form.Group>
             </Row>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Category</Form.Label>
-                <Form.Control type="Text" placeholder="Category" ref={categoryRef}/>
+                <Form.Control type="Text" placeholder="Category" ref={categoryRef} />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridPassword">
@@ -142,13 +153,13 @@ export default function Admin() {
               </Form.Group>
             </Row>
             <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridZip">
+              <Form.Group as={Col} controlId="formGridZip">
                 <Form.Label>Discount</Form.Label>
                 <Form.Control type="number" placeholder="in percent" min={0} max={100} ref={discountRef} />
               </Form.Group>
               <Form.Group as={Col} controlId="formGridCity">
                 <Form.Label>Exp. Date</Form.Label>
-                <Form.Control type="date" ref={expRef}/>
+                <Form.Control type="date" ref={expRef} />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridState">
@@ -166,7 +177,7 @@ export default function Admin() {
               />
             </Form.Group>
             <Button variant="primary" type="submit" onClick={handelSubmit}>
-              {loading?"Adding...":"Add product"}
+              {loading ? "Adding..." : "Add product"}
             </Button>
           </Form>
 
