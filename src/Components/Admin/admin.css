@@ -16,19 +16,44 @@
 }
 .addNew .preview .slides{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
 }
 .addNew .preview .slides .tiles{
+    position: relative;
     min-width: 100px;
     min-height: 100px;
-    background-color: #ececec;
+    max-width: 100px;
+    max-height: 100px;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
     border: none;
+    margin-right: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
 }
+.addNew .preview .slides .tiles .delete{
+    background-color: grey;
+    color: white;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 3px;
+    position: absolute;
+    top:5px;
+    right: 5px;
+    z-index: 15;
+
+}
+.addNew .preview .slides .tiles .delete:hover{
+    background-color: red;
+}
+.addNew .preview .slides .tiles img{
+    width: 100%;
+}
+
 .addNew .preview p{
     margin: 0;
 }
@@ -48,7 +73,7 @@
 .addNew .preview .slides label{
     width: fit-content;
 }
-.addNew .preview .slides>div:hover{
+.addNew .preview .slides>input::file-selector-button:hover{
     background-color: #fdfcfc;
 }
 .addNew .preview .slides>div>svg{

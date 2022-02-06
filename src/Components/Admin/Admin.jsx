@@ -4,12 +4,12 @@ import ProductCard from '../ProductCard/ProductCard';
 import OrderTabel from '../OrderTabel/OrderTabel'
 import './admin.css';
 import dummy from '../../Assets/product3.png';
-import { Plus, Upload } from 'react-feather';
+import { Plus, Upload, X } from 'react-feather';
 import StocksTable from '../StocksTabel/StocksTable'
 import { useDatabase } from '../../Context/DatabaseContext';
 
 export default function Admin() {
-  let { createDocWithoutId, uploadImage } = useDatabase();
+  let { createDocWithoutId, uploadImage, getImageURL, deleteImage,getImageList } = useDatabase();
   let [imgCount, setImgCount] = useState(0);
   let [loading, setLoading] = useState(false);
   let [error, setError] = useState({ status: false, message: "" });
@@ -24,10 +24,10 @@ export default function Admin() {
   let expRef = useRef();
   let stockRef = useRef();
   let descRef = useRef();
-  let imgRef = useRef();
+  let [imgList, setImgList] = useState([])
   const [selectedImage, setSelectedImage] = useState();
   let [data, setData] = useState({
-    productId:"Product Name",
+    productId: "Product Name",
     name: "Product NameBrand Name",
     brand: "Brand Name",
     category: "",
@@ -46,7 +46,7 @@ export default function Admin() {
 
   const handelChange = () => {
     setData({
-      productId: productNameRef.current.value+brandRef.current.value,
+      productId: productNameRef.current.value + brandRef.current.value,
       name: productNameRef.current.value,
       brand: brandRef.current.value,
       category: categoryRef.current.value,
@@ -58,25 +58,45 @@ export default function Admin() {
       exp: expRef.current.value,
       stock: stockRef.current.value,
       desc: discountRef.current.value,
-      img: selectedImage,
+      img: imgList[0]?imgList[0].url:dummy,
       rating: 0,
       ratingCount: 0
     })
   }
   const imageChange = (e) => {
-    console.log(data.name.length);
-    if (e.target.files.length !== 0 && productNameRef.current.value&&brandRef.current.value && imgCount<4) {
-      uploadImage('/products/'+data.productId+'/image'+imgCount ,e.target.files[0]).then(e=>{
-        console.log('uploaded successfully')
-        setImgCount(++imgCount);
-      }).catch(e=>{
-        console.log('failed to upload');
+    if (e.target.files.length !== 0 && productNameRef.current.value && brandRef.current.value && imgCount < 4) {
+      uploadImage('/products/' + data.productId + '/image' + imgCount, e.target.files[0]).then(e => {
+        console.log('uploaded successfully');
+
+        getImageURL('/products/' + data.productId + '/image' + imgCount).then(e => { 
+          setImgList([...imgList,{url:e,path:'/products/' + data.productId + '/image' + imgCount}]);
+          setTimeout(handelChange,1000);
+          console.log(imgList)
+        
+        }).catch(e => console.log(e));
+        setImgCount(imgList.length);
+
+      }).catch(e => {
+        console.log(e);
       })
 
-    }else{
+    } else {
       alert('Please enter Product name and product brand before uploading file');
     }
 
+  }
+  const handelDelete= (pathName) => {
+    deleteImage(pathName).then(e=>{
+          console.log("deleted Image");
+          const index = imgList.map(e => e.path).indexOf(pathName);
+          let temp = imgList;
+          temp = temp.splice(index, 1);
+          setImgList(temp);
+          console.log(imgList);
+
+        }).catch(e=>{
+          console.log(e);
+        })
   }
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -97,6 +117,14 @@ export default function Admin() {
           <ProductCard productInfo={data} />
 
           <div className="slides">
+            {imgList.map(img => {
+              return (<div key={img.url} className="tiles">
+                <X className='delete' onClick={()=>handelDelete(img.path)}/>
+                <img src={img.url} alt="" />
+              </div>)
+            })
+            }
+
             <input className='upload'
               accept="image/*"
               type="file"

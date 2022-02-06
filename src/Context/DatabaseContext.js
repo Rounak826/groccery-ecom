@@ -1,5 +1,5 @@
 import { collection, addDoc, doc, setDoc, deleteDoc, getDoc, getDocs, query, where ,orderBy } from "firebase/firestore";
-import { getStorage, ref, uploadBytes,getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes,getDownloadURL,listAll,deleteObject  } from "firebase/storage";
 import { getFirestore } from "firebase/firestore"
 import React, {useContext } from 'react';
 const DatabaseContext = React.createContext();
@@ -36,9 +36,9 @@ export default function DataProvider({children}) {
 
     }
     //Gets All the documents of specified field
-    function getAllDocs(collection) {
+    function getAllDocs(collectionName) {
        // returns Array of documents from collection
-        return getDocs(collection(db, "cities"));
+        return getDocs(collection(db, collectionName));
         
     }
     //Query specific documents from collection
@@ -90,7 +90,16 @@ export default function DataProvider({children}) {
         return getDownloadURL(imageRef)
 
      }
-    
+     function deleteImage(path){
+        const imageRef = ref(storage, path);
+        return deleteObject(imageRef)
+
+     }
+     function getImageList(path){
+        const imageRef = ref(storage, path);
+        return listAll(imageRef);
+
+     }
     const value = {
         createDocWithId,
         createDocWithoutId,
@@ -101,7 +110,9 @@ export default function DataProvider({children}) {
         queryCollection,
         getDocInOrder,
         uploadImage,
-        getImageURL
+        getImageURL,
+        getImageList,
+        deleteImage
     }
     return (
         <DatabaseContext.Provider value={value}>

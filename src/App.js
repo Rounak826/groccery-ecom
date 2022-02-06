@@ -1,17 +1,12 @@
 
 import './App.css';
-import ProductCard from './Components/ProductCard/ProductCard';
 import NavBar from './Components/Navbar/Navbar';
 import dummy from './Assets/product3.png';
-import CarouselComp from './Components/Carousel/carousel';
-import CategoryContainer from './Components/Category_container/Category_container';
 import Setup from './Components/Setup/Setup';
 import Footer from './Components/Footer/Footer'
-import { useState } from 'react';
+
 import Admin from './Components/Admin/Admin';
 import Signup from './Components/Signup/Signup';
-import OfferCard from './Components/OfferCard/OfferCard';
-import Contactform from './Components/contactform/contactform/Contactform'
 import PrivateRoute from './PrivateRoute';
 import {
   BrowserRouter as Router,
@@ -29,137 +24,10 @@ import OrderTracking from './Components/OrderTracking/OrderTracking';
 import DataProvider from './Context/DatabaseContext';
 import Verify from './Components/Verify/Verify';
 import UnVerifiedRoute from './unverifiedRoute';
-let data = [
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
-  {
-    name: 'detergent',
-    img: dummy,
-    wholePrice: Math.round(Math.random() * 1000),
-    salePrice: Math.round(Math.random() * 1000),
-    discount: Math.round(Math.random() * 100) + '% off',
-    rating: Math.round(Math.random() * 10),
-    ratingCount: Math.round(Math.random() * 10000)
-  },
 
+import Dashboard from './Components/Dashboard/Dashboard';
+import { useState } from 'react';
 
-
-]
 let itemList = [
   {
     name: 'Detergent liquid small pack',
@@ -181,33 +49,13 @@ let itemList = [
   }
 
 ]
-let offerList = [
-  {
-    offer: Math.round(Math.random() * 100) + '% Off',
-    desc: " on Detergent",
-    img: dummy
-  },
-  {
-    offer: Math.round(Math.random() * 100) + '% Off',
-    desc: " on Detergent",
-    img: dummy
-  },
-  {
-    offer: Math.round(Math.random() * 100) + '% Off',
-    desc: " on Detergent",
-    img: dummy
-  },
-  {
-    offer: Math.round(Math.random() * 100) + '% Off',
-    desc: " on Detergent",
-    img: dummy
-  }
-]
+
 function App() {
   const [admin, setAdmin] = useState(false);
   const changeAdmin = () => {
     setAdmin(!admin);
   }
+  
   return (
     <div className="App">
       <AuthProvider>
@@ -216,15 +64,7 @@ function App() {
             <NavBar admin={changeAdmin} list={itemList} />
 
             <Routes>
-              <Route path='/' element={<>
-
-                <CarouselComp />
-                <div className='offerRow'>{offerList.map(offer => <OfferCard key={"offer" + offer.offer} data={offer} />)}</div>
-                <CategoryContainer>
-                  {data.map(product => <ProductCard key={Math.random()} productInfo={product}></ProductCard>)}
-                </CategoryContainer>
-                <Contactform />
-              </>} />
+              <Route path='/' element={<Dashboard/>} />
               <Route path='/login' element={<PreventedRoute><Login /></PreventedRoute>} />
               <Route path='/signup' element={<PreventedRoute><Signup /></PreventedRoute>} />
               <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>} />
