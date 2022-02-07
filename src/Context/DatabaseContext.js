@@ -42,7 +42,7 @@ export default function DataProvider({children}) {
         
     }
     //Query specific documents from collection
-    function queryCollection(collectionName,field1,operator, feild2) {
+    function queryCollection(collectionName,field1,operator, value) {
         //operators available
         /* 
         < less than
@@ -59,7 +59,7 @@ export default function DataProvider({children}) {
         //for more info refer https://firebase.google.com/docs/firestore/query-data/queries?authuser=0#query_operators
         const collectionRef = collection(db, collectionName);
         // create query
-        const q = query(collectionRef, where(field1, operator, feild2));
+        const q = query(collectionRef, where(field1, operator, value));
         // returns Array of documents from collection which satisfies specified query
         return getDocs(q)
          

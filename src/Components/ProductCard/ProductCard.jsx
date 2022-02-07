@@ -1,6 +1,6 @@
 import React from 'react';
 import './productCard.css';
-
+import imagePlaceholder from '../../Assets/placeholder.jpg';
 import { Heart, Star } from 'react-feather';
 import { ShoppingCart } from 'react-feather';
 import {Link} from 'react-router-dom'
@@ -15,7 +15,7 @@ export default function ProductCard(props) {
            <button><Heart/></button>
          </div>
           <div className="pImage">
-           <Link to={"/product"}><img src={props.productInfo.img} alt=""/></Link>
+           <Link to={"/product"}><img src={props.productInfo.img[0]?props.productInfo.img[0].url:imagePlaceholder} alt=""/></Link>
           </div>
 
           <div className="pInfo">

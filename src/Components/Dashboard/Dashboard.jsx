@@ -6,139 +6,7 @@ import CarouselComp from '../../Components/Carousel/carousel';
 import CategoryContainer from '../../Components/Category_container/Category_container'
 import OfferCard from '../../Components/OfferCard/OfferCard';
 import Contactform from '../../Components/contactform/contactform/Contactform'
-import dummy from '../../Assets/product3.png';
-import { doc } from 'firebase/firestore';
-let data = [
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-    {
-      name: 'detergent',
-      img: dummy,
-      wholePrice: Math.round(Math.random() * 1000),
-      salePrice: Math.round(Math.random() * 1000),
-      discount: Math.round(Math.random() * 100) + '% off',
-      rating: Math.round(Math.random() * 10),
-      ratingCount: Math.round(Math.random() * 10000)
-    },
-  
-  
-  
-  ]
+let data = [];
 export default function Dashboard() {
     const {getAllDocs} = useDatabase();
   const [offers, setOffers] = useState([]);
@@ -152,9 +20,9 @@ export default function Dashboard() {
   
   
    
+  
 useEffect(() => {
   getOffers();
-  console.log(offers)
 }, [getOffers]);
 
   return (

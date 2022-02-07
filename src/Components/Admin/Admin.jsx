@@ -3,16 +3,33 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import ProductCard from '../ProductCard/ProductCard';
 import OrderTabel from '../OrderTabel/OrderTabel'
 import './admin.css';
-import dummy from '../../Assets/product3.png';
-import { Plus, Upload, X } from 'react-feather';
+import { X } from 'react-feather';
 import StocksTable from '../StocksTabel/StocksTable'
 import { useDatabase } from '../../Context/DatabaseContext';
-
+import { useEffect } from 'react';
+import { useCallback } from 'react';
+const defaultInput = {
+  productId: "Product Name",
+  name: "Product Name",
+  brand: "Brand Name",
+  category: "",
+  subCategory: "",
+  wholePrice: 0,
+  salePrice: 0,
+  unit: "unit",
+  discount: 0,
+  exp: "",
+  stock: 0,
+  desc: "",
+  img: [],
+  rating: 0,
+  ratingCount: 0
+}
 export default function Admin() {
-  let { createDocWithoutId, uploadImage, getImageURL, deleteImage,getImageList } = useDatabase();
-  let [imgCount, setImgCount] = useState(0);
+  let { createDocWithoutId, uploadImage, getImageURL, deleteImage } = useDatabase();
   let [loading, setLoading] = useState(false);
   let [error, setError] = useState({ status: false, message: "" });
+  let [Success, setSuccess] = useState({ status: false, message: "" });
   let productNameRef = useRef();
   let brandRef = useRef();
   let categoryRef = useRef();
@@ -25,26 +42,9 @@ export default function Admin() {
   let stockRef = useRef();
   let descRef = useRef();
   let [imgList, setImgList] = useState([])
-  const [selectedImage, setSelectedImage] = useState();
-  let [data, setData] = useState({
-    productId: "Product Name",
-    name: "Product NameBrand Name",
-    brand: "Brand Name",
-    category: "",
-    subCategory: "",
-    wholePrice: 0,
-    salePrice: 0,
-    unit: "unit",
-    discount: 0,
-    exp: "",
-    stock: 0,
-    desc: "",
-    img: dummy,
-    rating: 0,
-    ratingCount: 0
-  })
+  let [data, setData] = useState(defaultInput);
 
-  const handelChange = () => {
+  const handelChange = useCallback(() => {
     setData({
       productId: productNameRef.current.value + brandRef.current.value,
       name: productNameRef.current.value,
@@ -58,58 +58,84 @@ export default function Admin() {
       exp: expRef.current.value,
       stock: stockRef.current.value,
       desc: discountRef.current.value,
-      img: imgList[0]?imgList[0].url:dummy,
+      img: imgList,
       rating: 0,
       ratingCount: 0
     })
-  }
+
+  }, [imgList]);
   const imageChange = (e) => {
-    if (e.target.files.length !== 0 && productNameRef.current.value && brandRef.current.value && imgCount < 4) {
-      uploadImage('/products/' + data.productId + '/image' + imgCount, e.target.files[0]).then(e => {
-        console.log('uploaded successfully');
+    setError({status:false, message:""})
+    if (imgList.length < 4) {
+      if (e.target.files.length !== 0 && productNameRef.current.value && brandRef.current.value) {
+        uploadImage('/products/' + data.productId + '/image' + imgList.length, e.target.files[0]).then(e => {
 
-        getImageURL('/products/' + data.productId + '/image' + imgCount).then(e => { 
-          setImgList([...imgList,{url:e,path:'/products/' + data.productId + '/image' + imgCount}]);
-          setTimeout(handelChange,1000);
-          console.log(imgList)
-        
-        }).catch(e => console.log(e));
-        setImgCount(imgList.length);
 
-      }).catch(e => {
-        console.log(e);
-      })
+          getImageURL('/products/' + data.productId + '/image' + imgList.length).then(e => {
+            imgList.push({ url: e, path: '/products/' + data.productId + '/image' + imgList.length });
+            setTimeout(handelChange, 1000);
 
+          }).catch(e => {
+            console.log(e)
+            setError({status:true, message:"Image could'nt be fetched to display"})
+          });
+
+
+
+        }).catch(e => {
+          console.log(e);
+          setError({status:true, message:"Image could'nt be Added"})
+        })
+
+      } else {
+        setError({status:true, message:'Please enter Product name and product brand before uploading file'})
+      }
     } else {
-      alert('Please enter Product name and product brand before uploading file');
+      setError({status:true, message:"Image List Full, You can only add 4 images"})
     }
 
-  }
-  const handelDelete= (pathName) => {
-    deleteImage(pathName).then(e=>{
-          console.log("deleted Image");
-          const index = imgList.map(e => e.path).indexOf(pathName);
-          let temp = imgList;
-          temp = temp.splice(index, 1);
-          setImgList(temp);
-          console.log(imgList);
 
-        }).catch(e=>{
-          console.log(e);
-        })
+  }
+
+  const handelDelete = (pathName) => {
+    deleteImage(pathName).then(e => {
+      const index = imgList.map(e => e.path).indexOf(pathName);
+      let temp = array_remove(imgList, index);
+      setImgList(temp);
+      setTimeout(handelChange, 500);
+    }).catch(e => {
+      setError({status:true, message:"Failed to delete image"})
+    })
+
+  }
+  function array_remove(arr, index) {
+    for (let i = index; i < arr.length - 1; i++) {
+      arr[i] = arr[i + 1];
+    }
+    arr.length -= 1;
+    return arr;
   }
   const handelSubmit = (e) => {
+    
     e.preventDefault();
     setLoading(true);
     createDocWithoutId('product', data).then(e => {
-      alert('product added');
+      setSuccess({status:true, message:"Product Added Successfully!"})
+      setTimeout(()=>setSuccess({status:false, message:""}),4000);
       setLoading(false);
+      setData(defaultInput);
+      document.getElementById("reset").click();
+      setImgList([]);
     }).catch(e => {
       setLoading(false);
       console.log(e);
-      alert('product could not be added');
+      setError({status:true, message:"Failed to Add New Product, Try Again!"})
     })
   }
+  useEffect(() => {
+    handelChange();
+  }, [imgList, handelChange]);
+
   return (
     <>
       <div className="addNew">
@@ -117,9 +143,9 @@ export default function Admin() {
           <ProductCard productInfo={data} />
 
           <div className="slides">
-            {imgList.map(img => {
-              return (<div key={img.url} className="tiles">
-                <X className='delete' onClick={()=>handelDelete(img.path)}/>
+            {imgList.map((img, index) => {
+              return (<div id={img.path} key={img.url} className="tiles">
+                {(index === imgList.length - 1) && <X className='delete' onClick={() => handelDelete(img.path)} />}
                 <img src={img.url} alt="" />
               </div>)
             })
@@ -135,6 +161,13 @@ export default function Admin() {
         </div>
         <div className="form">
           <h1>Add New Item</h1>
+
+          {error.status && <div className="alert alert-danger" role="alert">
+            {error.message}
+          </div>}
+          {Success.status && <div className="alert alert-success" role="alert">
+            {Success.message}
+          </div>}
           <Form onChange={handelChange}>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
@@ -204,9 +237,15 @@ export default function Admin() {
                 ref={descRef}
               />
             </Form.Group>
+            <Row className="mb-3">
+            <Form.Control id="reset" className='reset' variant="primary" type="reset" />
             <Button variant="primary" type="submit" onClick={handelSubmit}>
               {loading ? "Adding..." : "Add product"}
             </Button>
+            
+            </Row>
+            
+
           </Form>
 
         </div>
