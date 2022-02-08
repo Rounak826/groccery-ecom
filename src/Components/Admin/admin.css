@@ -5,7 +5,22 @@
     border-radius: 1rem;
     overflow:hidden
 }
+.addOffer{
+    height: 75vh;
+}
+.addOffer .select-color{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.addOffer .color{
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    padding: 0;
+}
 .addNew .preview{
+    
     width: 50%;
     background-color: aliceblue;
     display: flex;
@@ -13,6 +28,29 @@
     align-items: center;
     justify-content: space-between;
     padding: 2rem 0;
+}
+.addNew .preview-list{
+    width: 50%;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+    overflow-y: scroll;
+}
+
+.addNew .preview-list .Card{
+    width: 40%;
+    margin-bottom: 1rem;
+    min-height: 150px;
+}
+.addNew .preview-list .Card svg{
+    height: 4rem;
+    size: 4rem;
+}
+.addNew .preview-list .Card:focus-within{
+    border: solid 5px black;
 }
 .addNew .preview .slides{
     width: 100%;

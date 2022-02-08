@@ -3,12 +3,12 @@ import 'firebase/compat/auth';
 
 const app = firebase.initializeApp(
     {
-        apiKey:"AIzaSyDKRUxoaTaMyGq9MuvYyG7MWJrEjpZLDaU",
-        authDomain:"techjain-grocery-ecom-demo.firebaseapp.com",
-        projectId:"techjain-grocery-ecom-demo",
-        storageBucket: "techjain-grocery-ecom-demo.appspot.com",
-        messagingSenderId:"938828973734",
-        appId: "1:938828973734:web:11d7eddff9bbcf5b341667"
+        apiKey: "AIzaSyAzzrST4yRZtf3S4zq_KJh_unftQLRwqTQ",
+        authDomain: "tech-jain-ecom-grocery.firebaseapp.com",
+        projectId: "tech-jain-ecom-grocery",
+        storageBucket: "tech-jain-ecom-grocery.appspot.com",
+        messagingSenderId: "748469794312",
+        appId: "1:748469794312:web:74138eb2b165da0db7c3bd"
     }
 )
 export const Auth = app.auth();
