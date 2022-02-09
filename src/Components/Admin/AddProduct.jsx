@@ -14,7 +14,9 @@ const defaultInput = {
   wholePrice: 0,
   salePrice: 0,
   unit: "unit",
+  limit:"1",
   discount: 0,
+  disType:'',
   exp: "",
   stock: 0,
   desc: "",
@@ -23,7 +25,7 @@ const defaultInput = {
   ratingCount: 0
 }
 export default function AddProduct() {
-    let { createDocWithoutId, uploadImage, getImageURL, deleteImage } = useDatabase();
+    let { createDocWithId, uploadImage, getImageURL, deleteImage } = useDatabase();
   let [loading, setLoading] = useState(false);
   let [error, setError] = useState({ status: false, message: "" });
   let [Success, setSuccess] = useState({ status: false, message: "" });
@@ -34,7 +36,7 @@ export default function AddProduct() {
   let wholePriceRef = useRef();
   let salesPriceRef = useRef();
   let unitRef = useRef();
-  let discountRef = useRef();
+  let limitRef = useRef();
   let expRef = useRef();
   let stockRef = useRef();
   let descRef = useRef();
@@ -51,10 +53,12 @@ export default function AddProduct() {
       wholePrice: wholePriceRef.current.value,
       salePrice: salesPriceRef.current.value,
       unit: unitRef.current.value,
-      discount: discountRef.current.value,
+      limit:limitRef.current.value,
+      discount: 0,
+      disType:'',
       exp: expRef.current.value,
       stock: stockRef.current.value,
-      desc: discountRef.current.value,
+      desc: descRef.current.value,
       img: imgList,
       rating: 0,
       ratingCount: 0
@@ -116,7 +120,7 @@ export default function AddProduct() {
     
     e.preventDefault();
     setLoading(true);
-    createDocWithoutId('product', data).then(e => {
+    createDocWithId('product',data.productId, data).then(e => {
       setSuccess({status:true, message:"Product Added Successfully!"})
       setTimeout(()=>setSuccess({status:false, message:""}),4000);
       setLoading(false);
@@ -212,8 +216,8 @@ export default function AddProduct() {
         </Row>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridZip">
-            <Form.Label>Discount</Form.Label>
-            <Form.Control type="number" placeholder="in percent" min={0} max={100} ref={discountRef} />
+            <Form.Label>Limit</Form.Label>
+            <Form.Control type="number" placeholder="Buying Limit" min={0} max={100} ref={limitRef} />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>Exp. Date</Form.Label>

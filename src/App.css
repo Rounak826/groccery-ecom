@@ -17,7 +17,8 @@
 .offerRow{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 2rem;
   max-height: 30vh;
   width: 100%;
   padding: 1rem 4rem;

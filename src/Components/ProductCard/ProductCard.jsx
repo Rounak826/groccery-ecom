@@ -4,13 +4,36 @@ import imagePlaceholder from '../../Assets/placeholder.jpg';
 import { Heart, Star } from 'react-feather';
 import { ShoppingCart } from 'react-feather';
 import {Link} from 'react-router-dom'
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useCallback } from 'react';
+const labelFiller = ['New','Featured','Fresh','popular'];
 export default function ProductCard(props) {
+  let [labeltext , setLabeltext] = useState('');
+  const label= useCallback(()=>{
+    if(!props.productInfo.disType){
+      if(props.productInfo.stock===0){
+        console.log(props.productInfo.stock)
+        setLabeltext('Sold Out');
+      }else if(props.productInfo.stock<10){
+        setLabeltext('Limited')
+      }else{
+        setLabeltext(labelFiller[Math.floor(Math.random() * 3)] );
+      }
+    }
+  }, [props.productInfo]);
+
+  useEffect(() => {
+    label()
+  }, [label,]);
+  
   return (
 
       <div className="pCard">
          <div className="top">
+           
            <div className="label">
-              {props.productInfo.discount}% off
+              {props.productInfo.disType?props.productInfo.discount+props.productInfo.disType:labeltext}
            </div>
            <button><Heart/></button>
          </div>

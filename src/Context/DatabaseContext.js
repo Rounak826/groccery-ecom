@@ -1,4 +1,4 @@
-import { collection, addDoc, doc, setDoc, deleteDoc, getDoc, getDocs, query, where ,orderBy } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc, deleteDoc, getDoc, getDocs, query, where ,orderBy,updateDoc  } from "firebase/firestore";
 import { getStorage, ref, uploadBytes,getDownloadURL,listAll,deleteObject  } from "firebase/storage";
 import { getFirestore } from "firebase/firestore"
 import React, {useContext } from 'react';
@@ -10,17 +10,21 @@ export function useDatabase(){
 export default function DataProvider({children}) {
     const db = getFirestore();
     const storage = getStorage();
-    //creates/updates a document in specified collection with specified doc ID
-    function createDocWithId(collection, docID, data) {
-        return setDoc(doc(db, collection, docID), data);
+    //creates/overwrites a document in specified collection with specified doc ID
+    function createDocWithId(collectionName, docID, data) {
+        return setDoc(doc(db, collectionName, docID), data);
     }
     //creates a document in specified collection with auto Generated doc Id
     function createDocWithoutId(collectionName, data) {
         return addDoc(collection(db, collectionName), data);
     }
+    //updates a document in specified collection with specified doc ID
+    function updateDocWithId(collection, docID, data) {
+        return updateDoc(doc(db, collection, docID), data);
+    }
     //delete a document in specified collection and docId
-    function deleteDocWithID(collection, docID) {
-        return deleteDoc(doc(db, collection, docID));
+    function deleteDocWithID(collectionName, docID) {
+        return deleteDoc(doc(db, collectionName, docID));
     }
     //get document with docID from specified collection
     function getDocWithID(collection, docID) {
@@ -103,6 +107,7 @@ export default function DataProvider({children}) {
     const value = {
         createDocWithId,
         createDocWithoutId,
+        updateDocWithId,
         deleteDoc,
         deleteDocWithID,
         getAllDocs,

@@ -101,7 +101,7 @@
     height: 72vh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: stretch;
     overflow-y: scroll;
     padding-left: 1rem;
