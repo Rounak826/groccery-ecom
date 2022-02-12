@@ -24,7 +24,6 @@ import OrderTracking from './Components/OrderTracking/OrderTracking';
 import DataProvider from './Context/DatabaseContext';
 import Verify from './Components/Verify/Verify';
 import UnVerifiedRoute from './unverifiedRoute';
-
 import Dashboard from './Components/Dashboard/Dashboard';
 import { useState } from 'react';
 
@@ -72,7 +71,7 @@ function App() {
               <Route path='/checkout' element={<PrivateRoute><CheckoutPage /></PrivateRoute>} />
               <Route path='/setup' element={<PrivateRoute><Setup /></PrivateRoute>} />
               <Route path='/pay' element={<PrivateRoute><Payment /></PrivateRoute>} />
-              <Route path='/test' element={<Test />} />
+              <Route path='/test' element={<Test/>} />
               <Route path='/trackOrder' element={<PrivateRoute><OrderTracking /></PrivateRoute>} />
               <Route path='/verify' element={<UnVerifiedRoute><Verify /></UnVerifiedRoute>} />
             </Routes>

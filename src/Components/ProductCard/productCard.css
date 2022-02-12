@@ -113,7 +113,9 @@
     justify-content: space-between;
     align-items: center;
 }
-.pCard .pControl select{
+.pCard .pControl input{
+    width: 38%;
+    min-width: 55px;
     padding: 0 0.2rem;
     height: 1.6rem;
     border-radius: 5px;

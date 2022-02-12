@@ -56,7 +56,7 @@ export default function AddProduct() {
       limit:limitRef.current.value,
       discount: 0,
       disType:'',
-      exp: expRef.current.value,
+      exp: Date.parse(expRef.current.value),
       stock: stockRef.current.value,
       desc: descRef.current.value,
       img: imgList,

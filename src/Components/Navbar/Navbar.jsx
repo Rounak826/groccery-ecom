@@ -1,17 +1,60 @@
-import React, { useState } from "react";
+import React,{ useCallback, useEffect, useState }  from "react";
 import './navbar.css'
 import { LogOut, Search, Settings, ShoppingCart, Truck, User } from "react-feather";
 import { Link, useNavigate,useLocation  } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import Cart from '../Cart/Cart'
 import logo from '../../Assets/techjainlogo.png';
+import { useDatabase } from '../../Context/DatabaseContext';
 export default function NavBar(props) {
   const {logout,currentUser} = useAuth();
   const [dropDown, setDropDown] = useState(true);
   const [showCart, setShowCart] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   const [admin ,setAdmin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation().pathname;
+  const {getAllNestedDocs,getDocWithID,updateNestedDocWithId,reload} = useDatabase();
+  const [cart, setCart] = useState({list:[],Total:0});
+
+
+  const fetchCartList = useCallback(
+    ()=>{
+
+    getAllNestedDocs('UserInfo',currentUser.uid,'cart').then(res=>{
+     let list = [];
+     let Total = 0;
+     res.docs.map(item=>getDocWithID('product',item.id).then(doc=>{
+        Total = Total+doc.data().salePrice*item.data().qty;
+        list.push({...doc.data(),qty:item.data().qty})
+        
+      }))
+      setTimeout(()=>{
+
+        setCart({list,Total});
+        
+      },200)
+      
+
+      }).catch(e=>{console.log(e)});
+
+    },[currentUser.uid,getAllNestedDocs,getDocWithID]
+  )
+  const updateCart = (docID,data)=>{
+    
+    updateNestedDocWithId('UserInfo',currentUser.uid,'cart',docID,data).then(()=>{
+      fetchCartList();
+      
+    }).catch(e=>{
+      console.log('failed to update cartItem',e);
+    })
+  }
+  useEffect(() => {
+    fetchCartList();
+    setCartCount(cart.list.length);
+  }, [cart.list.length,fetchCartList,reload]);
+  
+
   function handleLogout(e){
     logout(e).then(e=>navigate('/login')).catch(e=>alert('failed to logout! \n Please Try Again.'));
     ;
@@ -45,8 +88,8 @@ export default function NavBar(props) {
   
           </div>
           <div className="dropDown">
-            <button onClick={()=>setShowCart(!showCart)}><ShoppingCart /><p className="count">{3}</p></button>
-            {showCart&&<Cart list={props.list}/>}
+            <button onClick={()=>setShowCart(!showCart)}><ShoppingCart /><p className="count">{cartCount}</p></button>
+            {showCart&&<Cart update={updateCart} data={cart}/>}
           </div>
           
         </div></>

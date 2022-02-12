@@ -6,9 +6,10 @@ import CarouselComp from '../../Components/Carousel/carousel';
 import CategoryContainer from '../../Components/Category_container/Category_container'
 import OfferCard from '../../Components/OfferCard/OfferCard';
 import Contactform from '../../Components/contactform/contactform/Contactform'
-
+import { useAuth } from '../../Context/AuthContext';
 export default function Dashboard() {
-    const {getAllDocs,queryCollection } = useDatabase();
+  const {currentUser} = useAuth();
+  const {getAllDocs,queryCollection,createNestedDocWithId ,setReload,reload} = useDatabase();
   const [offers, setOffers] = useState([]);
   const [category, setCategory] = useState('All');
   const [subcategory, setSubcategory] = useState('');
@@ -20,10 +21,21 @@ export default function Dashboard() {
   const subcatHandler = (subcat)=>{
     setSubcategory(subcat);
   }
+  const HandelAddToCart=(data)=>{
+    console.log(currentUser);
+    createNestedDocWithId('UserInfo',currentUser.uid,'cart',data.productid,data).then(()=>{
+        alert('added to cart');
+        setReload(!reload);
+    }).catch(e=>{
+      console.log(e); 
+    })
+  }
 
   const getOffers = useCallback(async () => {
     const data = await getAllDocs('offers');
+    console.log(data);
     let offerList = await data.docs.map(doc=>doc.data());
+    console.log(offerList);
     setOffers(await offerList);
    
   }, [getAllDocs]);
@@ -31,7 +43,7 @@ export default function Dashboard() {
   const getProducts = useCallback(async () => {
     if (category === "All") {
       const data = await getAllDocs("product");
-      let productlist = await data.docs.map((doc) => doc.data());
+      let productlist = await data.docs.map((doc) =>doc.data());
       setProducts(await productlist);
     } else {
       queryCollection("product", "category", "==", category);
@@ -60,7 +72,7 @@ useEffect(() => {
                 <CarouselComp />
                 <div className='offerRow'>{offers.map(offer => <OfferCard key={"offer" + offer.offer} data={offer} />)}</div>
                 <CategoryContainer categoryHandler={categoryHandler} subcatHandler={subcatHandler}>
-                  {product.map(product => <ProductCard key={Math.random()} productInfo={product}></ProductCard>)}
+                  {product.map(product => <ProductCard key={Math.random()} add2Cart={HandelAddToCart} productInfo={product}></ProductCard>)}
                 </CategoryContainer>
                 <Contactform />
               </>
