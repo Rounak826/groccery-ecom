@@ -47,7 +47,7 @@ export default function DataProvider({children}) {
         }*/
 
     }
-    //Gets All the documents of specified field
+    //Gets All the documents of specified collection
     function getAllDocs(collectionName) {
        // returns Array of documents from collection
         return getDocs(collection(db, collectionName));

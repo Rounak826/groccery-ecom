@@ -16,12 +16,12 @@ export default function NavBar(props) {
   const location = useLocation().pathname;
   const {getAllNestedDocs,getDocWithID,updateNestedDocWithId,reload} = useDatabase();
   const [cart, setCart] = useState({list:[],Total:0});
-
+  const [didMount, setDidMount] = useState(false);
+  const uid = currentUser?currentUser.uid:false;
 
   const fetchCartList = useCallback(
     ()=>{
-
-    getAllNestedDocs('UserInfo',currentUser.uid,'cart').then(res=>{
+    getAllNestedDocs('UserInfo',uid,'cart').then(res=>{
      let list = [];
      let Total = 0;
      res.docs.map(item=>getDocWithID('product',item.id).then(doc=>{
@@ -38,10 +38,14 @@ export default function NavBar(props) {
 
       }).catch(e=>{console.log(e)});
 
-    },[currentUser.uid,getAllNestedDocs,getDocWithID]
+    },[uid,getAllNestedDocs,getDocWithID]
   )
   const updateCart = (docID,data)=>{
-    
+    if (!didMount) {
+      // required to not call API on initial render
+      setDidMount(true);
+      return;
+    }
     updateNestedDocWithId('UserInfo',currentUser.uid,'cart',docID,data).then(()=>{
       fetchCartList();
       
@@ -50,9 +54,13 @@ export default function NavBar(props) {
     })
   }
   useEffect(() => {
-    fetchCartList();
+
+    if(uid){
+      fetchCartList();
+    }
+    
     setCartCount(cart.list.length);
-  }, [cart.list.length,fetchCartList,reload]);
+  }, [uid,cart.list.length,fetchCartList,reload]);
   
 
   function handleLogout(e){
